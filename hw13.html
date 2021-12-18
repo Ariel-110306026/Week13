@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="bor" align="center">
+		<h1> Guessing Game<br></h1>
+
+		<h4>Your Guess(1~100)<br></h4>
+
+		<input type="number" id="num" value=""><br>
+			
+		<p>
+			<button type="button" value="play" onclick="output()"> play </button> 
+		</p>
+
+		<div id="disp" class="borP">
+			<p class="borH4">Result</p>
+
+		</div>
+		<img src="cong.jpg" id="cong" width="33%" height="30%" hidden>
+	</div>
+	<script>
+		
+		var rand=Math.floor((Math.random()*100+1));;
+		var guessing2=100;
+		var guessing3=0;
+		var gmax=[guessing2];
+		var gmin=[guessing3];
+		var resultS="hi";
+
+		function output(){
+			
+			var guessingS=document.getElementById('num').value;
+			var guessing=parseInt(guessingS);
+
+			if(guessing==rand){
+				resultS="Congratulations,you are right!";
+				print();
+			}
+			else if (guessing<rand){
+				gmin.push(guessing);
+				findRange();
+				print();
+			}
+			else if(guessing>rand){
+				gmax.push(guessing);
+				findRange();
+				print();
+			}
+		}
+		function findRange (){
+
+			var max=100;
+			var min=0;
+
+			for(var i=0;i<gmin.length;i++){
+				min=Math.max(min,gmin[i]);
+			}
+			for(var i=0;i<gmax.length;i++){
+				max=Math.min(max,gmax[i]);
+			}	
+			resultS=min+"~"+max;
+		}
+		function print(){
+
+			var msg=document.createElement('p');
+			msg.setAttribute("class","borH4");
+			msg.textContent=resultS;
+			document.getElementById('disp').appendChild(msg);
+
+		}
+	</script>
+</body>
+</html>
