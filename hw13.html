@@ -38,6 +38,7 @@
 			if(guessing==rand){
 				resultS="Congratulations,you are right!";
 				print();
+				document.getElementById('cong').removeAttribute('hidden');
 			}
 			else if (guessing<rand){
 				gmin.push(guessing);
